@@ -16,15 +16,15 @@ namespace TaskTrayApplication
         {
             Form prompt = new()
             {
-                Width = 500,
-                Height = 150,
+                Width = 650,
+                Height = 200,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 Text = caption,
                 StartPosition = FormStartPosition.CenterScreen
             };
             Label dialogTextLabel = new() { Left = 50, Top = 20, Text = text };
             TextBox dialogTextBox = new() { Left = 50, Top = 50, Width = 400 };
-            Button dialogConfirmation = new() { Text = "Start", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            Button dialogConfirmation = new() { Text = text, Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
             dialogConfirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(dialogTextBox);
             prompt.Controls.Add(dialogConfirmation);
@@ -37,9 +37,9 @@ namespace TaskTrayApplication
     public class TaskTrayApplicationContext : ApplicationContext
     {
         public NotifyIcon notifyIcon = new();
+        public Start startWindow = new();
         public Configuration configWindow = new();
-        // public string startMenuText = "Start";
-        // public List<string> projectCode = new();
+        public List<string> projectCode = new();
 
         public TaskTrayApplicationContext()
         {
@@ -50,21 +50,22 @@ namespace TaskTrayApplication
             notifyIcon.ContextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
                 // Variable text for Start or Stop Event
-                // new ToolStripMenuItem(startMenuText ,null , new EventHandler(Start), startMenuText),
+                new ToolStripMenuItem("Start" ,null , new EventHandler(Start), "Start"),
                 new ToolStripMenuItem("Configuration",null , new EventHandler(ShowConfig), "Configuration"),
                 new ToolStripMenuItem("Exit",null , new EventHandler(Exit), "Exit")
             });
             notifyIcon.Visible = true;
         }
 
-        /* private void Start(object sender, EventArgs e)
+        private void Start(object sender, EventArgs e)
         {
-            Prompt.ShowDialog("Start", @"Enter your project code(s):");
-            dialogTextBox.Text;
-            projectCode.Add();
-            startMenuText = "Stop";
+            // If we are already showing the window meerly focus it.
+            if (startWindow.Visible)
+                startWindow.Focus();
+            else
+                startWindow.ShowDialog();
         }
-        */
+
         private void ShowMessage(object sender, EventArgs e)
         {
             if (Settings.Default.ShowMessage)
