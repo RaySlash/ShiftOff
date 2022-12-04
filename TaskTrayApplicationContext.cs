@@ -38,31 +38,32 @@ namespace TaskTrayApplication
     {
         public NotifyIcon notifyIcon = new();
         public Configuration configWindow = new();
-        public string startMenuText = "Start";
+        // public string startMenuText = "Start";
         public List<string> projectCode = new();
 
         public TaskTrayApplicationContext()
         {
-            notifyIcon.Icon = new Icon(@"\AppIcon.ico");
+            notifyIcon.Icon = Tasktray.Properties.Resources.AppIcon;
             notifyIcon.DoubleClick += new EventHandler(ShowMessage);
             notifyIcon.ContextMenuStrip = new ContextMenuStrip() ;
             notifyIcon.ContextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
                 // Variable text for Start or Stop Event
-                new ToolStripMenuItem(startMenuText ,null , new EventHandler(Start), startMenuText),
+                // new ToolStripMenuItem(startMenuText ,null , new EventHandler(Start), startMenuText),
                 new ToolStripMenuItem("Configuration",null , new EventHandler(ShowConfig), "Configuration"),
                 new ToolStripMenuItem("Exit",null , new EventHandler(Exit), "Exit")
             });
             notifyIcon.Visible = true;
         }
 
-        private void Start(object sender, EventArgs e)
+        /* private void Start(object sender, EventArgs e)
         {
             Prompt.ShowDialog("Start", @"Enter your project code(s):");
-            dialogTextBox.Text
+            dialogTextBox.Text;
             projectCode.Add();
             startMenuText = "Stop";
         }
+        */
         private void ShowMessage(object sender, EventArgs e)
         {
             if (Settings.Default.ShowMessage)
