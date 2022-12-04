@@ -39,13 +39,14 @@ namespace TaskTrayApplication
         public NotifyIcon notifyIcon = new();
         public Configuration configWindow = new();
         // public string startMenuText = "Start";
-        public List<string> projectCode = new();
+        // public List<string> projectCode = new();
 
         public TaskTrayApplicationContext()
         {
             notifyIcon.Icon = Tasktray.Properties.Resources.AppIcon;
+            notifyIcon.Text = "ShiftOff";
             notifyIcon.DoubleClick += new EventHandler(ShowMessage);
-            notifyIcon.ContextMenuStrip = new ContextMenuStrip() ;
+            notifyIcon.ContextMenuStrip = new ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
                 // Variable text for Start or Stop Event
