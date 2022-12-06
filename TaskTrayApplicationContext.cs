@@ -9,31 +9,6 @@ using static System.Windows.Forms.DataFormats;
 
 namespace TaskTrayApplication
 {
-    public static class Prompt
-    {
-        // Dialog box for user-input project code.
-        public static string ShowDialog(string text, string caption)
-        {
-            Form prompt = new()
-            {
-                Width = 650,
-                Height = 200,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = caption,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            Label dialogTextLabel = new() { Left = 50, Top = 20, Text = text };
-            TextBox dialogTextBox = new() { Left = 50, Top = 50, Width = 400 };
-            Button dialogConfirmation = new() { Text = text, Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-            dialogConfirmation.Click += (sender, e) => { prompt.Close(); };
-            prompt.Controls.Add(dialogTextBox);
-            prompt.Controls.Add(dialogConfirmation);
-            prompt.Controls.Add(dialogTextLabel);
-            prompt.AcceptButton = dialogConfirmation;
-
-            return prompt.ShowDialog() == DialogResult.OK ? dialogTextBox.Text : "";
-        }
-    }
     public class TaskTrayApplicationContext : ApplicationContext
     {
         public NotifyIcon notifyIcon = new();
@@ -59,7 +34,6 @@ namespace TaskTrayApplication
 
         private void Start(object sender, EventArgs e)
         {
-            // If we are already showing the window meerly focus it.
             if (startWindow.Visible)
                 startWindow.Focus();
             else

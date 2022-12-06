@@ -1,8 +1,10 @@
+using CsvHelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 
@@ -15,16 +17,21 @@ namespace TaskTrayApplication
             InitializeComponent();
         }
 
-        private void LoadSettings(object sender, EventArgs e)
-        {
-        }
-
         private void SaveSettings(object sender, FormClosingEventArgs e)
         {
             // If the user clicked "Save"
             if (this.DialogResult == DialogResult.OK)
             {
-                TaskTrayApplication.Properties.Settings.Default.Save();
+                Properties.Settings.Default.Save();
+                using var writer = new StreamWriter(@"C:\Users\alfred\Downloads\test.csv", false);
+                var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                // string date = DateTime.Now.ToString("d");
+                // string time = DateTime.Now.ToString("T");
+                csv.WriteRecords(textBox1.Text);
+                // csv.WriteRecord(date);
+                // csv.WriteRecord(time);
+                writer.Flush();
+                csv.Flush();
             }
         }
     }

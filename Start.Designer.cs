@@ -89,7 +89,6 @@ namespace TaskTrayApplication
             this.Name = "Start";
             this.Text = "ShiftOff";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveSettings);
-            this.Shown += new System.EventHandler(this.LoadSettings);
             this.ResumeLayout(false);
             this.PerformLayout();
 
