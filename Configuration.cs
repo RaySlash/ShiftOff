@@ -29,5 +29,30 @@ namespace TaskTrayApplication
                 TaskTrayApplication.Properties.Settings.Default.Save();
             }
         }
+
+        public void button1_Click(object sender, EventArgs e)
+        {
+            LoadFileNow();
+        }
+
+        public static string fileName { get; set; }
+
+        public void LoadFileNow()
+        {
+            OpenFileDialog openFileDialog1 = new()
+            {
+                InitialDirectory = "c:\\",
+                Filter = "Database files (*.csv)|*.csv",
+                FilterIndex = 0,
+                RestoreDirectory = true
+            };
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fileName = openFileDialog1.FileName;
+                textBox1.Text = fileName;
+
+            }
+        }
+
     }
 }

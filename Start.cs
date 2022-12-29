@@ -23,16 +23,22 @@ namespace TaskTrayApplication
             if (this.DialogResult == DialogResult.OK)
             {
                 Properties.Settings.Default.Save();
-                using var writer = new StreamWriter(@"C:\Users\alfred\Downloads\test.csv", false);
-                var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                // string date = DateTime.Now.ToString("d");
-                // string time = DateTime.Now.ToString("T");
-                csv.WriteRecords(textBox1.Text);
-                // csv.WriteRecord(date);
-                // csv.WriteRecord(time);
-                writer.Flush();
-                csv.Flush();
+                var Configuration = new Configuration();
+                string writeDirectory = Configuration.fileName;
+                // using (var writer = new StreamWriter(writeDirectory, false))
+                // using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    string dateTimeValue = DateTime.Now.ToString();                
+                    // csv.WriteRecord(dateTimeValue);
+                    // writer.Flush();
+                    // csv.Flush();
+                }
             }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

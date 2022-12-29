@@ -31,7 +31,7 @@ namespace TaskTrayApplication
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.labelCode = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // saveButton
@@ -45,6 +45,7 @@ namespace TaskTrayApplication
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Start";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // cancelButton
             // 
@@ -67,19 +68,20 @@ namespace TaskTrayApplication
             this.labelCode.TabIndex = 3;
             this.labelCode.Text = "Project Code: ";
             // 
-            // textBox1
+            // comboBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 23);
-            this.textBox1.TabIndex = 4;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(100, 12);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(152, 23);
+            this.comboBox1.TabIndex = 4;
             // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(293, 97);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.labelCode);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
@@ -99,6 +101,8 @@ namespace TaskTrayApplication
         private System.Windows.Forms.Button cancelButton;
         private Label labelCode;
         private TextBox textBox1;
+        private Label label1;
+        private ComboBox comboBox1;
     }
 }
 
